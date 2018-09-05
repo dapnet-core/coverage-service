@@ -1,0 +1,5 @@
+docker pull garthk/qt-build
+
+
+apt-get install mesa-common-dev libgl1-mesa-dev
+
