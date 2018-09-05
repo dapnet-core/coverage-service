@@ -53,8 +53,8 @@ int main(int argc, char *argv[]) {
         cout << "-Image     Absolute Path to store the output images" << endl;
         cout << "-r         Range in m" << endl;
         cout << "-R         Resolution in m" << endl;
-        cout << "-ant       Antenna Type; to be found in Antennapath" << endl << endl;
-        cout << "-n         Label of the Transmitter" << endl << endl;
+        cout << "-ant       Antenna Type; to be found in Antennapath" << endl;
+        cout << "-n         Label of the Transmitter" << endl;
         cout << "-th        Number of additional threads" << endl;
 
         return 1;
