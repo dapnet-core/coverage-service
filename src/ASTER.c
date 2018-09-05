@@ -22,7 +22,6 @@ int ReadASTER(char *filename, char *path_dem, data &data1) {
     unsigned char error, buffer[20];
     char north[4], east[5], *base = NULL, *base2 = 0;
 
-
     if ((strstr(filename, ".tif") == NULL)) {
         return 0;
     }
@@ -298,12 +297,11 @@ int WriteDEM1(char *filename, data &data1) {
             if (byte >= data1.min_elevation)
                 last_good_byte = byte;
 
-            //Fehlerbehandlung f�r fehlende Pixel
+            //Fehlerbehandlung fuer fehlende Pixel
             if (byte < data1.min_elevation) {
                 average_aster(y, x, last_good_byte, data1);
                 fprintf(outfile, "%d", aster[y][x]);
                 fprintf(outfile, " ");
-
             } else
                 fprintf(outfile, "%d", byte);
             fprintf(outfile, " ");
@@ -312,7 +310,7 @@ int WriteDEM1(char *filename, data &data1) {
         fprintf(outfile, "\n");
         fflush(outfile);
     }
-    printf("Done!\n");
+    printf("Done writing DEM file.\n");
     return 1;
     fclose(outfile);
 }
@@ -327,7 +325,7 @@ int ASTER(char *path_aster, char *path_dem1) {
 
     //ReadASTER needs full path with .tif extend and
 
-    if (ReadASTER(path_aster, path_dem1, data1)) {// 0 means successfull conversation file to aster[][]
+    if (ReadASTER(path_aster, path_dem1, data1)) {// 1 means successfull conversation file to aster[][]
         success = WriteDEM1(path_dem1, data1);
     }
     return success;
