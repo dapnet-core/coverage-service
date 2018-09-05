@@ -2,6 +2,9 @@
 #ifndef MAPPING_H_INCLUDED
 #define MAPPING_H_INCLUDED
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #include <iostream>
 #include <math.h>
 #include <fstream>
@@ -14,19 +17,17 @@
 
 using namespace std;
 
-
-struct coord
-{
+struct coord {
     double lat;
     double lon;
 };
-struct map_index
-{
+
+struct map_index {
     int lon;
     int lat;
 };
-struct Height_Map
-{
+
+struct Height_Map {
     float Range_m;
     float Range_grad_N;
     float Range_grad_E;
@@ -38,7 +39,7 @@ struct Height_Map
     char path_to_hgt[100];
     char path_to_tif[100];
 
-    vector< vector<short> > map_data;
+    vector <vector<short>> map_data;
 
     coord down_right_arcsec; //fixed
     coord down_left_arcsec; //variable
@@ -46,33 +47,33 @@ struct Height_Map
 
     //ASTER (1) or SRTM (3) elevation model?
     int step;
-
 };
-
-
-
 
 double great_circle_distance(coord start, coord target);
 
-long double meter2arcsec_lon( coord start, double dist_km);
+long double meter2arcsec_lon(coord start, double dist_km);
+
 double meter2arcsec_lat(coord start, double dist_km);
 
 //Calculate down right corner as 3-arcsec/1-arcsec steps from mid
 void down_right_corner(Height_Map &map1, coord station_coord);
+
 //Calculate down left corner as 3-arcsec/1-arcsec steps from mid
 void down_left_corner(Height_Map &map1, coord station_coord);
+
 //Calculate up right corner as 3-arcsec/1-arcsec steps from mid
 void up_right_corner(Height_Map &map1, coord station_coord);
 
 map_index arcsec2index(Height_Map &map1, coord &arcsec);
 
-void initialize_Map (Height_Map &map1, coord station_coord);
+void initialize_Map(Height_Map &map1, coord station_coord);
 
-fstream* FindDEM(Height_Map& map1, coord& down_right_arcsec);
+fstream *FindDEM(Height_Map &map1, coord &down_right_arcsec);
 
-int ReadDEM(Height_Map &map, coord& down_right_arcsec, double Resolution);
+int ReadDEM(Height_Map &map, coord &down_right_arcsec, double Resolution);
 
-double* Path (Height_Map &map, coord pixel_arcsec, double &alpha, double &receiver_height);
+double *Path(Height_Map &map, coord pixel_arcsec, double &alpha, double &receiver_height);
 
-int mapping(Height_Map & map1, coord & station_coord_grad, double Resolution);
+int mapping(Height_Map &map1, coord &station_coord_grad, double Resolution);
+
 #endif // MAPPING_H_INCLUDED

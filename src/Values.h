@@ -40,9 +40,6 @@ public:
     double altitude;
 
     int threadnumber;
-
-
-
 };
 
 #endif // VALUES_H
