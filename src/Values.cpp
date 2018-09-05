@@ -5,8 +5,8 @@ Values::Values()
     Range = 20000;
     Resolution = 150;
 
-    station_lat= 0.0 ;
-    station_lon= 0.0 ;
+    station_lat= 0.0;
+    station_lon= 0.0;
 
     path_to_dem = "/home/hubertus/Height Data/dem/";
     path_to_tif = "/home/hubertus/Height Data/Aster/";
@@ -17,7 +17,6 @@ Values::Values()
     receiver_height = 10;
 
     frequency = 5700;
-
 
     //Step either can be 3 or 1 arcseconds for SRTM or ASTER
      step = 1;

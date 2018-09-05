@@ -17,6 +17,7 @@
 
 using namespace std;
 
+//TODO check what going on for southern hemisphere and what about west coordinates
 struct coord {
     double lat;
     double lon;
@@ -35,6 +36,7 @@ struct Height_Map {
     coord station_coord;
     map_index station_index;
 
+    // TODO Dangerous, use String
     char path_to_dem[100];
     char path_to_hgt[100];
     char path_to_tif[100];

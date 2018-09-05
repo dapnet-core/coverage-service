@@ -319,7 +319,7 @@ fstream *FindDEM(Height_Map &map1, coord &down_right_arcsec) {
 
     fstream *fs = new fstream;
     /*
-       F�r die aktuelle unterste Ecke muss nach der .dem1/.dem3 Datei gesucht werden
+       Fuer die aktuelle unterste Ecke muss nach der .dem1/.dem3 Datei gesucht werden
        Format der .dem Dateien:
        sprintf(dem_filename, "%dx%dx%dx%d.demx", min_north, max_north, min_west, max_west);
     */
@@ -376,20 +376,26 @@ fstream *FindDEM(Height_Map &map1, coord &down_right_arcsec) {
     fflush(stdout);
 
     if (!(fs->is_open())) {
+        // Holds the path to ASTER file of be read
         char path[100] = "";
         cout << "File " << dem_filename << " " << " not found" << endl;
         cout << "Try to evaluate .dem file from HGT/ASTER file in path" << endl;
 
+        // Build Filename of ASTER file in variable path
         if (map1.step == 1) {
-
             strcpy(path, map1.path_to_tif);
             strcat(path, "ASTGTM2_");
-            strcat(path, "N");
-            if (min_north_grad >= 10) { sprintf(str_help, "%i", min_north_grad); }
-            else { sprintf(str_help, "0%i", min_north_grad); }
-            strcat(path, str_help);
-            if (min_east_grad <= 180 && min_east_grad >= 0) {
 
+            // This works just on the nothern hemisphere
+            strcat(path, "N");
+            if (min_north_grad >= 10) {
+                sprintf(str_help, "%i", min_north_grad);
+            } else {
+                sprintf(str_help, "0%i", min_north_grad);
+            }
+            strcat(path, str_help);
+
+            if (min_east_grad <= 180 && min_east_grad >= 0) {
                 strcat(path, "E");
                 if (min_east_grad >= 100)
                     sprintf(str_help, "%i", min_east_grad);
