@@ -315,6 +315,7 @@ void initialize_Map(Height_Map &map1, coord station_coord_grad, double Resolutio
    */
 }
 
+
 fstream *FindDEM(Height_Map &map1, coord &down_right_arcsec) {
 
     fstream *fs = new fstream;
@@ -388,13 +389,14 @@ fstream *FindDEM(Height_Map &map1, coord &down_right_arcsec) {
 
             // This works just on the nothern hemisphere
             strcat(path, "N");
+// TODO Refactor to automated leading zero padding
             if (min_north_grad >= 10) {
                 sprintf(str_help, "%i", min_north_grad);
             } else {
                 sprintf(str_help, "0%i", min_north_grad);
             }
             strcat(path, str_help);
-
+// TODO Refactor to automated leading zero padding
             if (min_east_grad <= 180 && min_east_grad >= 0) {
                 strcat(path, "E");
                 if (min_east_grad >= 100)
@@ -409,6 +411,7 @@ fstream *FindDEM(Height_Map &map1, coord &down_right_arcsec) {
             } else if (min_east_grad > 180 && min_east_grad < 360) {
                 int max_west_grad = 360 - min_east_grad;
                 strcat(path, "W");
+// TODO Refactor to automated leading zero padding
                 if (max_west_grad >= 100)
                     sprintf(str_help, "%i", max_west_grad);
                 if (max_west_grad >= 10 && max_west_grad < 100)
@@ -418,20 +421,7 @@ fstream *FindDEM(Height_Map &map1, coord &down_right_arcsec) {
 
                 strcat(path, str_help);
             }
-            /*     else if(min_east_grad <0)
-                 {
-                     int max_west_grad = -min_east_grad;
-                     strcat(path, "W");
-                     if(max_west_grad >= 100)
-                     sprintf(str_help,"%i",max_west_grad);
-                     if(max_west_grad >=10 && max_west_grad < 100)
-                     sprintf(str_help, "0%i", max_west_grad);
-                     if(max_west_grad < 10)
-                     sprintf(str_help, "00%i", max_west_grad);
-
-                     strcat(path, str_help);
-
-                 }*/
+//TODO define somewhere else, as it's a NASA definition
             strcat(path, "_dem.tif");
 
             if (ASTER(path, path_dem)) {
