@@ -8,7 +8,7 @@ QT       += core
 QT       += widgets
 QT       -= gui
 
-TARGET = HamNet_Simulation
+TARGET = coverage
 CONFIG   += console
 CONFIG   -= app_bundle
 
